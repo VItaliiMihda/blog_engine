@@ -2,6 +2,7 @@ from django import forms
 from .models import Tag, Post
 from django.core.exceptions import ValidationError
 
+
 class TagForm(forms.ModelForm):
     # title = forms.CharField(max_length=50)
     # slug = forms.CharField(max_length=50)
@@ -27,7 +28,6 @@ class TagForm(forms.ModelForm):
             raise ValidationError('Slug must be umique. We have "{}" slug already'.format(new_slug))
         return new_slug
 
-
     # def save(self):
     #     new_tab = Tag.objects.create(
     #             title=self.cleaned_data['title'],
@@ -40,7 +40,6 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'slug', 'body', 'tags']
-
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
@@ -53,5 +52,5 @@ class PostForm(forms.ModelForm):
 
             if new_slug == 'create':
                 raise ValidationError('Slug may not be "Create"')
-                
+
             return new_slug
