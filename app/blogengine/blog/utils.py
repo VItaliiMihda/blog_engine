@@ -34,7 +34,7 @@ class ObjectUpdateMixin:
 
     def get(self, request, slug):
         obj = self.model.objects.get(slug__iexact=slug)
-        bound_form = self.model_forme(instance=obj)
+        bound_form = self.model_form(instance=obj)
         return render(request, self.template, context={'form': bound_form, self.model.__name__.lower(): obj})
 
     def post(self, request, slug):

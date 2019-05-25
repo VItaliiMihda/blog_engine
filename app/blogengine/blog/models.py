@@ -11,6 +11,7 @@ def gen_slug(s):
 
 
 class Post(models.Model):
+    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     title = models.CharField(max_length=50, db_index=True)
     slug = models.SlugField(max_length=50, blank=True, unique=True)
     body = models.TextField(blank=True, db_index=True)
@@ -39,6 +40,7 @@ class Post(models.Model):
 
 
 class Tag(models.Model):
+    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
 

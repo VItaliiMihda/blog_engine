@@ -30,7 +30,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">Hidden brand</a>
+        <a class="navbar-brand" href="/">Brand</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'posts_list_url' %}">Posts</a>
@@ -39,7 +39,10 @@
                 <a class="nav-link" href="{% url 'tags_list_url' %}">Tags</a>
             </li>
         </ul>
-
+        <div class="form-inline">
+            <button class="btn btn-outline-success mx-2" type="button">Sign Up</button>
+            <button class="btn btn-outline-secondary mx-2" type="button">Registration</button>
+        </div>
         <form class="form-inline my-2 my-lg-0" action="{% url 'posts_list_url' %}">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -80,7 +83,7 @@
 {% if request.user.is_authenticated and request.user.is_staff %}
     <div class="admin-panel align-items-center">
         <a href="/admin" class="btn btn-outline-info">Admin</a>
-        {% block admin_panel %}{% endblock %}
+        {% block admin-panel %}{% endblock %}
     </div>
 {% endif %}
 </body>

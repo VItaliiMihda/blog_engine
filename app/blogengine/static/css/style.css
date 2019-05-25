@@ -19,6 +19,7 @@
     margin: 5px 0;
 }
 
-.edit, .delete {
+.admin-panel .edit,
+.admin-panel .delete {
     display: none;
 }
