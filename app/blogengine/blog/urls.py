@@ -12,5 +12,4 @@ urlpatterns = [
     path('tags/<str:slug>/', TagDetails.as_view(), name='tag_detail_url'),
     path('tags/<str:slug>/update/', TagUpdate.as_view(), name='tag_update_url'),
     path('tags/<str:slug>/delete/', TagDelete.as_view(), name='tag_delete_url'),
-
 ]
