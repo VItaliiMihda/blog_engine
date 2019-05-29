@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, SignInForm
 
 
@@ -42,3 +43,8 @@ def login_view(request):
     else:
         form = SignInForm()
     return render(request, 'users/login.html', {'form': form})
+
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
