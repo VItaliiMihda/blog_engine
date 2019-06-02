@@ -15,12 +15,19 @@ class ObjectCreateMixin:
     form_model = None
     template = None
 
+    # def form_valid(self, form):
+    #     # pass
+    #     print('1111111111111111111111111111', self.request)
+    #     print('2222222222222222222222222222', form.instance)
+
     def get(self, request):
         form = self.form_model()
         return render(request, self.template, context={'form': form})
 
     def post(self, request):
-        bound_form = self.form_model(request.POST)
+        req = request.POST.copy()
+        req['author'] = str(request.user.id)
+        bound_form = self.form_model(req)
         if bound_form.is_valid():
             new_obj = bound_form.save()
             return redirect(new_obj)

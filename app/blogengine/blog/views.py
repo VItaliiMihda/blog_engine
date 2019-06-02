@@ -1,4 +1,3 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View
 
 from .models import Post, Tag

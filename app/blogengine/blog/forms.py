@@ -4,12 +4,6 @@ from django.core.exceptions import ValidationError
 
 
 class TagForm(forms.ModelForm):
-    # title = forms.CharField(max_length=50)
-    # slug = forms.CharField(max_length=50)
-
-    # title.widget.attrs.update({'class': 'form-control'})
-    # slug.widget.attrs.update({'class': 'form-control'})
-
     class Meta:
         model = Tag
         fields = ['title', 'slug']
@@ -39,18 +33,19 @@ class TagForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'slug', 'body', 'tags']
+        fields = ['title', 'slug', 'body', 'tags', 'author']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.TextInput(attrs={'class': 'form-control'}),
             'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'author': forms.HiddenInput(),
         }
 
-        def clean_slug(self):
-            new_slug = self.cleaned_data['slug'].lower()
+    def clean_slug(self):
+        new_slug = self.cleaned_data['slug'].lower()
 
-            if new_slug == 'create':
-                raise ValidationError('Slug may not be "Create"')
+        if new_slug == 'create':
+            raise ValidationError('Slug may not be "Create"')
 
-            return new_slug
+        return new_slug
