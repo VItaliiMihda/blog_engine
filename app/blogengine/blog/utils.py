@@ -36,6 +36,8 @@ class ObjectUpdateMixin:
 
     def get(self, request, slug):
         obj = self.model.objects.get(slug__iexact=slug)
+        if not obj.author == request.user:
+            return redirect('posts_list_url')
         bound_form = self.model_form(instance=obj)
         return render(request, self.template, context={'form': bound_form, self.model.__name__.lower(): obj})
 
@@ -56,6 +58,8 @@ class ObjectDeleteMixin:
 
     def get(self, request, slug):
         obj = self.model.objects.get(slug__iexact=slug)
+        if not obj.author == request.user:
+            return redirect('posts_list_url')
         return render(request, self.template, context={self.model.__name__.lower(): obj})
 
     def post(self, request, slug):
