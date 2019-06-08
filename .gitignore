@@ -33,3 +33,5 @@ src/wfp_msp/settings/media/pdf/*
 get-pip.py
 venv
 /venv
+*.sqlite3
+*.bak
